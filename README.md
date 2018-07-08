@@ -12,7 +12,8 @@ Simple JSON-based, HTML invoice generator, with optional custom template.
 
 ### Configuration file
 
-First, you need to create a configuration file based on [config.js.dist`][config].
+First, you need to create a configuration file based on [config.js.dist][config].
+
 It can be overriden by the configuration inside the json invoice.
 
 ```bash
@@ -104,6 +105,13 @@ npm run test
 
 [TODO][todo]
 
+## License
+
+[MIT][license]
+
+
 [config]: config.json.dist
 [invoice-sample]: invoices/10001.json
 [todo]: TODO.md
+[license]: LICENSE.md
+
