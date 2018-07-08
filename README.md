@@ -2,6 +2,8 @@
 
 Simple JSON-based, HTML invoice generator, with optional custom template.
 
+![Screenshot](/../github/.github/screenshot.png?raw=true "Screenshot")
+
 ## Requirements
 
 * Node >= 9 (async / await)
