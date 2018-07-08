@@ -1,0 +1,112 @@
+doctype html
+html
+head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    title #{company.name} - Invoice # #{id} - #{issue_date} for #{client.name}
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css")
+    link(href="https://fonts.googleapis.com/css?family=Chivo:400,700" rel="stylesheet")
+    style.
+        body {
+            font-family: Chivo,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+        }
+        #invoice {
+            width: 820px;
+            margin: 2rem auto;
+        }
+        .tax_value .value {
+            max-width: 6rem;
+        }
+body.f6
+    article#invoice
+        header
+            .logo
+                <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#181818" fill-rule="evenodd">
+                        <rect x="0" y="0" width="100" height="100" />
+                    </g>
+                </svg>
+            .information.flex
+                h1.w-50.mr2 Invoice
+
+                .details.w-50.mt2
+                   p.invoice_number.mb2
+                    span.ttu.tracked.f6 No.
+                    span  #{id}
+                   p.issued_date.mt2 
+                    span #{issued_date}
+        aside.flex.mt2
+            .company.w-50.mr2
+                h2.f6.mb0.tracked.normal.ttu From
+                h3.name.mt0 #{company.name}
+                p
+                p.address_street.mv0 #{company.address.street}
+                p.address_postcode.mv0 #{company.address.postcode}
+                p.address_city.mv0 #{company.address.city}
+                p.address_country.mv0 #{company.address.country}
+                p.email.mv2 #{company.email}
+                p
+                p.coc.mv0
+                    span.ttu.f6.b KvK
+                    span  #{company.coc}
+                p.vat.mv0
+                    span.ttu.f6.b VAT
+                    span  #{company.vat}
+            .client.w-50
+                h2.f6.mb0.tracked.normal.ttu To
+                h3.name.mt0 #{client.name}
+                p.address_street.mv0 #{client.address.street}
+                p.address_postcode.mv0 #{client.address.postcode}
+                p.address_city.mv0 #{client.address.city}
+                .address_country.mv0 #{client.address.country}
+                p
+                p.coc.mv0
+                    span.ttu.f6.b #{client.coc.name}
+                    span  #{client.coc.value}
+                p.vat.mv0
+                    span.ttu.f6.b VAT
+                    span  #{client.vat}
+            
+        table.tasks.w-100.mt5(cellspacing=0)
+            tr
+                th.tl.pb3.bb.b--black-20 Description
+                th.tl.pb3.bb.b--black-20= mode.unit
+                th.tl.pb3.bb.b--black-20= mode.rate
+                th.tl.pb3.bb.b--black-20 Amount
+            each task in tasks
+                tr
+                    td.pv3.pb3.bb.b--black-20= task.description
+                    td.pv3.pb3.bb.b--black-20= task.quantity
+                    td.pv3.pb3.bb.b--black-20 !{currency.text}#{task.rate}
+                    td.pv3.pb3.bb.b--black-20 !{currency.text}#{task.amount}
+            tr.subotal
+                td(colspan=2)
+                td.pv3.pb3.bb.b--black-20.title Subtotal 
+                td.pv3.pb3.bb.b--black-20.value !{currency.text}#{computed.subtotal}
+            tr.tax_rate
+                td(colspan=2)
+                    td.pv3.pb3.bb.b--black-20.title Tax Rate
+                if tax.mode == "reversed"
+                    td.pv3.pb3.bb.b--black-20.value 0.00%
+                else
+                    td.pv3.pb3.bb.b--black-20.value #{(tax.rate * 100).toFixed(2)}%
+            tr.tax_value
+                td(colspan=2)
+                td.pv3.pb3.bb.b--black-20.title Tax
+                if tax.mode == "reversed"
+                    td.pv3.pb3.bb.b--black-20.value VAT reverse-charged
+                else
+                    td.pv3.pb3.bb.b--black-20.value !{currency.text}#{(computed.taxValue).toFixed(2)}
+            tr.total
+                td(colspan=2)
+                td.pv3.pb3.total.fw6 Total
+                td.pv3.pb3.fw6 !{currency.text}#{computed.toPay.toFixed(2)}
+                
+        .payment.mt5
+            p.terms Invoices are due and payable within <strong>#{payment_term}</strong> from the invoice date to the following account:
+            p.method <strong>IBAN</strong> #{company.iban}
+            p.method <strong>SWIFT/BIC</strong> #{company.swift}
+
+        .thanks.mt5
+            p <em>Thank you!</em>

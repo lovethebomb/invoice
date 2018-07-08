@@ -1,0 +1,30 @@
+{
+    "id": 10001,
+    "issued_date": "2018-07-05",
+    "mode": {
+        "unit": "Hours",
+        "rate": "Hourly Rate"
+    },
+    "client": {
+        "id": "great-client",
+        "name": "Great Client Ltd",
+        "address": {
+            "street": "Client Street",
+            "postcode": "Client Post code",
+            "city": "Client City",
+            "country": "Client Country"
+        },
+        "vat": "CL123456789",
+        "coc": {
+            "name": "CoC",
+            "value": "123456789"
+        }
+    },
+    "tasks": [
+        {
+            "description": "A well executed task",
+            "rate": 42,
+            "quantity": 5
+        }
+    ]
+}

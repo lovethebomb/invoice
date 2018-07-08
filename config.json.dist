@@ -1,0 +1,24 @@
+{
+    "company": {
+        "name": "My Company",
+        "email": "invoice@my-company.tld",
+        "address": {
+            "street": "Company Street Name",
+            "postcode": "Company Post Code",
+            "city": "Company City",
+            "country": "Company Country"
+        },
+        "vat": "123456789",
+        "coc": "123456789",
+        "iban": "123456789",
+        "swift": "CODE42CODE"
+    },
+    "payment_term": "30 days",
+    "tax": {
+        "rate": 0.42
+    },
+    "currency": {
+        "code": "EUR",
+        "text": "&euro;"
+    }
+}
