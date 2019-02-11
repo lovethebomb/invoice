@@ -1,5 +1,7 @@
 # invoice
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/lovethebomb/invoice.svg)](https://greenkeeper.io/)
+
 Simple JSON-based, HTML invoice generator, with optional custom template.
 
 ![Screenshot](/../github/.github/screenshot.png?raw=true "Screenshot")
